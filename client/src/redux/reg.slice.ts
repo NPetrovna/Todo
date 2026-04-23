@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { CounterState } from '../types/User.types'
 
-const initialState: CounterState = {
+export const initialState: CounterState = {
   name: '',
   mail: '',
   pass: '',
