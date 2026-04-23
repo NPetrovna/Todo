@@ -1,11 +1,10 @@
 import { Button, Form, Input } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import type { CounterState } from '../types/User.types';
+import { useDispatch } from 'react-redux';
 import { changeRegistration } from '../redux/reg.slice';
 
 
 export default function FormDisabledDemo() {
-  const reg = useSelector((state: CounterState) => state);
+  // const reg = useSelector((state: CounterState) => state);
   const dispatch = useDispatch();
 
   const changeHandler = (event) => {
@@ -13,8 +12,17 @@ export default function FormDisabledDemo() {
   }
 
   const onSubmit = async (values) => {
-    console.log(values)
-    console.log('reg==>', reg)
+    try {
+      await fetch(import.meta.env.VITE_URL + '/user/reg', {
+      method: 'POST',
+      headers: {'Content-type': 'application/json'},
+      credentials: 'include',
+      body: JSON.stringify(values),
+    })
+    } catch (err) {
+      console.error(err)
+    }
+
   }
 
   return (
